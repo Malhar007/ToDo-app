@@ -1,0 +1,41 @@
+<!Doctype html>
+<html lang="en" ng-app = "myApp" >
+<head >
+    <title>angular project</title>
+    <link href="\content\styles.css" rel="stylesheet" type="text/css"/>
+    <script src="\app\lib\angular.min.js"></script>
+    <script src="\content\app.js"></script>
+    <script src="\app\lib\angular-1.7.9\angular-route.min.js"></script>
+    <script src="\app\lib\angular-1.7.9\angular-animate.min.js"></script>
+</head>
+<body  >
+  <div  id = "menu-bar">
+    <h1> Schedule</h1>
+    </div>
+  <div class = "content" ng-controller="Controller">
+
+  <button ng-click = "order = 'name'" > order by name </button>
+  <button ng-click = "order ='rate'" > order by rate </button>
+  <input type="text" ng-model="search" placeholder="search"/>
+  <ul id="list">
+      <li ng-repeat = "i in ninjas | orderBy : order | filter:search " ng-show="true" >
+
+        <img ng-src="{{i.thumb}}" alt="yo"  style="magin : -12px 10px 0 0; float: left;
+        width : 50px" ng-show = "i.thumb"/>
+        <h3> {{i.name }} - {{i.rate}} hrs </h3>
+        <div class = "remove" ng-click = "removen(i)">x</div>
+          <span  class="belt" style = "background :{{i.belt}}">{{i.belt}} </span>
+       </li>
+    </ul>
+    <form ng-submit = "additem()">
+      <input type="text" placeholder="work" ng-model ="newitem.name">
+        <input type="text" placeholder="Time" ng-model ="newitem.rate">
+          <input type="text" placeholder="color" ng-model ="newitem.belt">
+
+  <input type="submit" name="" value="add new item"/>
+    </form>
+  </div>
+  <header ng-include = "'header.html'"></header>
+  <main ng-view  ></main>
+</body>
+</html>
